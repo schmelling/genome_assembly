@@ -1,2 +1,2 @@
-Genome-assembly
+Genome assembly
 ===============
