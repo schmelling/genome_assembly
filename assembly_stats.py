@@ -129,7 +129,7 @@ print 'NG90 Contig: ' + str(NG90con)
 print '# of contigs > 2000b: ' + str(Xkb)
 
 
-out = open('stats_output_' + contigsMultifasta + '.txt', 'w')
+out = open(contigsMultifasta + '_stats.txt', 'w')
 out.write(contigsMultifasta + '\n')
 out.write('total length: ' + str(sum) + '\n')
 out.write('# of contigs: ' + str(len(contigsLength)) + '\n')
