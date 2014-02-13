@@ -1,3 +1,14 @@
+#############################################################################
+#
+#   This script provides a way to parse a blast output text files
+#
+#   Please change the filenames for your purpose 
+#
+#   Author: Nicolas Schmelling
+#
+#############################################################################
+
+
 result_handle = open("Trinity.blast.txt")
 
 from Bio.Blast import NCBIStandalone
