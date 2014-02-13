@@ -1,10 +1,11 @@
 #############################################################################
 #
-# This script provides a way to split a fasta file into to subfiles
+#   This script provides a way to split a fasta file into to subfiles
 #
-# Please change the filenames for your purpose and the startswith argument
+#   Please change the filenames for your purpose and the startswith argument
 #
-# Author Nicolas Schmelling
+#   Author: Nicolas Schmelling
+#
 #############################################################################
 
 
