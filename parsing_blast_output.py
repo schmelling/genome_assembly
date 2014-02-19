@@ -23,7 +23,7 @@ for blast_record in blast_iterator:
     for alignment in blast_record.alignments:
         for hsp in alignment.hsps:
             if hsp.expect < E_VALUE_THRESH:
-                output.write('X ,')
+                output.write(str(blast_record.query) + ',')
                 output.write(str(alignment.title) + ',')
                 output.write(str(alignment.length) + ',')
                 output.write(str(hsp.expect) + '')
