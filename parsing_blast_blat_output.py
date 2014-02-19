@@ -1,12 +1,12 @@
-#############################################################################
+#############################################################################################
 #
-#   This script provides a way to parse a blast output text files
+#   This script provides a way to parse a BLAST/BLAT (if in BLAST format) output text files
 #
 #   Please change the filenames for your purpose 
 #
 #   Author: Nicolas Schmelling
 #
-#############################################################################
+#############################################################################################
 
 
 result_handle = open("Trinity.blast.txt")
