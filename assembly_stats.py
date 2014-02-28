@@ -1,6 +1,6 @@
 #################################################################################################################
 #
-#   Calculating of [Total Assembly Length], [Total # of Contigs], [Total # of trimmed Contigs], [Trimmed Lenght],
+#   Calculating of [Total Assembly Length], [Total # of Contigs], [Total # of trimmed Contigs], [Trimmed Length],
 #   [Min Contig Size [bp]], [Median Contig Size [bp]], [Mean Contig Size [bp]], [Max Contig Size [bp]],
 #   [N50[bp] [# of Contigs]], [NG50[bp] [# of Contigs]], [N90 [bp] [# of Contigs]], [NG90 [bp] [# of Contigs]],
 #   [Total # of Contigs > Average Gene Size]
