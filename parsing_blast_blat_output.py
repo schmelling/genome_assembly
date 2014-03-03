@@ -17,7 +17,7 @@ def blast_parse(file, e, output):
     blast_record = next(blast_iterator)
     
     output = open(output, 'w')
-    output.write('query title\talignment title\tlength\te value' + '\n')
+    output.write('query title\tdescription\tlength\te value' + '\n')
     for blast_record in blast_iterator:
         E_VALUE_THRESH = e
         for alignment in blast_record.alignments:
