@@ -7,6 +7,8 @@
 #
 #############################################################################
 
+import sys
+
 def split(in_file, split_argument):
     new = open('1.fasta','w')
     with open(in_file,'r') as tf:
@@ -20,3 +22,9 @@ def split(in_file, split_argument):
                 new = open('2.fasta', 'w')
             new.write(line)
     new.close()
+
+if __name__ == "__main__":
+    in_file = sys.argv[1]
+    split_argument = sys.argv[2]
+    
+    split(in_file, split_argument)
