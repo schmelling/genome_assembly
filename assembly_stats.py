@@ -22,13 +22,14 @@ def assembly_stats(contigsMultifasta, mini, est_genome_size, average_gene_size):
     trimmedLength = []
     total = 0
     sum = 0
+    thres = mini - 1
 
     # Create lists for Total Length and Trimmed Length
     for seq_record in SeqIO.parse(open(contigsMultifasta), 'fasta'):
         contigsLength.append(len(seq_record.seq))
         total += len(seq_record.seq)
         # Min Contig Length Threshold
-        if len(seq_record.seq) > mini: 
+        if len(seq_record.seq) > thres: 
             sum += len(seq_record.seq)
             trimmedLength.append(len(seq_record.seq))
 
