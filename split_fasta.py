@@ -9,10 +9,10 @@
 
 def split(in_file, split_argument):
     new = open('1.fasta','w')
-    with open('in_file','r') as tf:
+    with open(in_file,'r') as tf:
         count = 0
         for line in tf:
-            if line.startswith("split_argument"):
+            if line.startswith(split_argument):
                 count += 1
             if count == 1:
                 new.close()
