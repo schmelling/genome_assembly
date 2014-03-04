@@ -1,4 +1,5 @@
 import csv
+import sys
 
 def compare(blat_file, blast_file, kind):
     
@@ -41,3 +42,10 @@ def compare(blat_file, blast_file, kind):
     
     match.close()
     no_match.close()
+
+if __name__ == "__main__":
+    blat_file = sys.argv[1]
+    blast_file = sys.argv[2]
+    kind = sys.argv[3]
+    
+    compare(blat_file, blast_file, kind)
