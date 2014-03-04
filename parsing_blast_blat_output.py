@@ -7,6 +7,8 @@
 #
 #############################################################################################
 
+import sys
+
 def blast_parse(file, e, output):
 
     result_handle = open(file)
@@ -31,3 +33,10 @@ def blast_parse(file, e, output):
     
     
     output.close()
+
+if __name__ == "__main__":
+    file = sys.argv[1]
+    e = int(sys.argv[2])
+    output = sys.argv[3]
+    
+    blast_parse(file, e, output)
