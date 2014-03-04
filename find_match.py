@@ -1,3 +1,11 @@
+'''
+    Finding matches and no matches between a BLAST and a BLAT file
+    
+    Usage: python find_match.py <blat_file> <blast_file> <kind of sequence rna/prot>
+    
+    Author: Nicolas Schmelling
+
+'''
 import csv
 import sys
 
