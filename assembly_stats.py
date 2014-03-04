@@ -14,6 +14,7 @@
 
 from __future__ import division
 from Bio import SeqIO
+import sys
 
 def assembly_stats(contigsMultifasta, mini,est_genome_size, average_gene_size):
     
@@ -147,3 +148,9 @@ def assembly_stats(contigsMultifasta, mini,est_genome_size, average_gene_size):
     out.write('# NG90 Contig: ' + str(NG90con) + '\n')
     out.write('# of contigs > ' + str(average_gene_size) + 'bp: ' + str(Xkb) + '\n')
     out.close()
+
+if __name__ == "__main__":
+    contigsMultifasta = sys.argv[1]
+    mini = sys.argv[2]
+    est_genome_size = sys.argv[3]
+    average_gene_size = sys.argv[4]
