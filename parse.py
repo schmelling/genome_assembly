@@ -38,7 +38,7 @@ def blast_parse(file, e, output):
 
 if __name__ == "__main__":
     file = sys.argv[1]
-    e = int(sys.argv[2])
+    e = float(sys.argv[2])
     output = sys.argv[3]
     
     blast_parse(file, e, output)
