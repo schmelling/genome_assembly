@@ -9,13 +9,13 @@
 
 '''
 
+from Bio.Blast import NCBIStandalone
 import sys
 
 def blast_parse(file, e, output):
 
     result_handle = open(file)
     
-    from Bio.Blast import NCBIStandalone
     blast_parser = NCBIStandalone.BlastParser()
     blast_iterator = NCBIStandalone.Iterator(result_handle, blast_parser)
     blast_record = next(blast_iterator)
