@@ -13,8 +13,6 @@ import sys
 def best_hit(file, output):
     
     best = open(output, 'w')
-    best.close()
-    best = open(output, 'r+')
     r = open(file, 'r')
     count = []
     
