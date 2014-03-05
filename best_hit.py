@@ -3,7 +3,7 @@
   This code take a parsed BLAST file and returns the best hit,
   if the best hit is 'hypothetical' or 'predicted' the code also returns the best hit with a know function
   
-  Usage: python best_hit.py <input_file> <output_file>
+  Usage: python best_hit.py <input_file> <output_file> <best or best+>
 
   Author: Nicolas Schmelling
   
@@ -11,7 +11,7 @@
 
 import sys
 
-def best_hit(file, output):
+def best_hit(file, output, option):
     
     best = open(output, 'w')
     r = open(file, 'r')
@@ -21,15 +21,16 @@ def best_hit(file, output):
     
     for line in r:
         if line.split('\t')[0] in list:
-            if 'hypothetical' in line.split('\t')[1]:
-                continue
-            elif 'predicted' in line.split('\t')[1]:
-                continue
-            elif line.split('\t')[0] in list2:
-                continue
-            else:
-                best.write(line)
-                list2.append(line.split('\t')[0])
+            if option == 'best+':
+                if 'hypothetical' in line.split('\t')[1]:
+                    continue
+                elif 'predicted' in line.split('\t')[1]:
+                    continue
+                elif line.split('\t')[0] in list2:
+                    continue
+                else:
+                    best.write(line)
+                    list2.append(line.split('\t')[0])
         else:
             best.write(line)
             list.append(line.split('\t')[0])
