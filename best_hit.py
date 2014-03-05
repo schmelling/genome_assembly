@@ -40,5 +40,6 @@ def best_hit(file, output, option):
 if __name__ == "__main__":
     file = sys.argv[1]
     output = sys.argv[2]
+    option = sys.argv[3]
     
-    best_hit(file, output)
+    best_hit(file, output, option)
