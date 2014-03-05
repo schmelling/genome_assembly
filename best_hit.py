@@ -20,7 +20,7 @@ def best_hit(file, output):
     
     for line in r:
         if line.split('\t')[0] in count:
-            print 'already in best'
+            continue
         else:
             best.write(line)
             count.append(line.split('\t')[0])
