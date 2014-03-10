@@ -1,6 +1,6 @@
 '''
 
-   This script provides a way to parse a BLAST/BLAT (if in BLAST format) output.txt files
+   This script provides a way to parse a BLAST/BLAT (if in NCBI Blast format) output.txt files
    The output file contains the query ID, description, length and the e value
    
    Usage: python parse.py <blast file> <e value> <output file>
