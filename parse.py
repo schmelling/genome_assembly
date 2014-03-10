@@ -23,10 +23,9 @@ def blast_parse(file, e, output):
     output = open(output, 'w')
     output.write('query title\tdescription\tlength\te value' + '\n')
     for blast_record in blast_iterator:
-        E_VALUE_THRESH = e
         for alignment in blast_record.alignments:
             for hsp in alignment.hsps:
-                if hsp.expect < E_VALUE_THRESH:
+                if hsp.expect < e:
                     output.write(str(blast_record.query[:18]) + ' \t')
                     output.write(str(alignment.title) + '\t')
                     output.write(str(alignment.length) + '\t')
