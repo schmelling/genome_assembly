@@ -13,11 +13,10 @@ import sys
 
 def best_hit(file, output, option):
     
-    best = open(output, 'w')
+    best = open(output, 'r+')
     r = open(file, 'r')
     list = []
     list2 = []
-    count = 0
     
     for line in r:
         if line.split('\t')[0] in list:
@@ -34,7 +33,10 @@ def best_hit(file, output, option):
         else:
             best.write(line)
             list.append(line.split('\t')[0])
-            
+            if 'hypothetical' not in line.split('\t')[1]:
+                if 'predicted' not in line.split('\t')[1]:
+                    list2.append(line.split('\t')[0])
+                        
     best.close()
     
 if __name__ == "__main__":
