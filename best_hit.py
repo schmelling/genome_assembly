@@ -13,7 +13,7 @@ import sys
 
 def best_hit(file, output, option):
     
-    best = open(output, 'r+')
+    best = open(output, 'w')
     r = open(file, 'r')
     list = []
     list2 = []
