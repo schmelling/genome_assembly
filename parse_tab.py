@@ -1,3 +1,14 @@
+'''
+
+   This script provides a way to parse a BLAST/BLAT (if in tabular format) output.txt files
+   The output file contains the query ID, description, length and the e value
+   
+   Usage: python parse.py <blast file> <e value> <output file>
+
+   Author: Nicolas Schmelling
+
+'''
+
 import sys
 
 def blast_parse(infile, e, output):
