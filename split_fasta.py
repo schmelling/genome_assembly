@@ -10,14 +10,14 @@
 
 import sys
 
-def split(in_file, split):
+def split(in_file, split_after):
     new = open('1.fasta','w')
     with open(in_file,'r') as tf:
         count = 0
         for line in tf:
             if line.startswith('>'):
                 count += 1
-            if count == split:
+            if count == split_after:
                 new.close()
                 count = 0
                 new = open('2.fasta', 'w')
@@ -26,6 +26,6 @@ def split(in_file, split):
 
 if __name__ == "__main__":
     in_file = sys.argv[1]
-    split = int(sys.argv[2])
+    split_after = int(sys.argv[2])
     
-    split(in_file, split)
+    split(in_file, split_after)
