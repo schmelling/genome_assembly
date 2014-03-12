@@ -1,6 +1,6 @@
 '''
 
-   Calculation of [Total # of Contigs], [Total Length], [Total # of trimmed Contigs], [Trimmed Length],
+   Calculation of [Total # of Contigs], [Total Length], [Total # of trimmed Contigs], [Trimmed Length], [GC content],
    [Min Contig Size [bp]], [Median Contig Size [bp]], [Mean Contig Size [bp]], [Max Contig Size [bp]],
    [N50[bp] [# of Contigs]], [NG50[bp] [# of Contigs]], [N90 [bp] [# of Contigs]], [NG90 [bp] [# of Contigs]],
    [Total # of Contigs > Average Gene Size]
@@ -24,6 +24,8 @@ def assembly_stats(contigsMultifasta, mini, est_genome_size, average_gene_size):
     total = 0
     sum = 0
     thres = mini - 1
+    GC_count = 0
+    seqs = open(contigsMultifasta, 'r')
 
     # Create lists for Total Length and Trimmed Length
     for seq_record in SeqIO.parse(open(contigsMultifasta), 'fasta'):
@@ -33,16 +35,28 @@ def assembly_stats(contigsMultifasta, mini, est_genome_size, average_gene_size):
         if len(seq_record.seq) > thres: 
             sum += len(seq_record.seq)
             trimmedLength.append(len(seq_record.seq))
+        
+    # Calculating GC content
+    for seq_record in seqs.read():
+        if seq_record.startswith('>'):
+            continue
+        else:
+            if 'G' in seq_record:
+                GC_count += 1
+            if 'C' in seq_record:
+                GC_count += 1
+                
+    GC_cont = float((GC_count/total)*100)
 
     # Sorting the Trimmed Contigs from Large to Small
     trimmedLength.sort()
     trimmedLength.reverse()
-
+    
     # Theoretic NXX and NGXX Sizes
     teoN50 = sum / 2.0 
     teoNG50 = est_genome_size / 2.0
-    teoN90 = (sum / 100)*90
-    teoNG90 = (est_genome_size /100)*90
+    teoN90 = sum * 0.9
+    teoNG90 = est_genome_size * 0.9
 
     # Calculating Mean Contig Size
     meancontig = int(sum/len(trimmedLength))
@@ -73,14 +87,14 @@ def assembly_stats(contigsMultifasta, mini, est_genome_size, average_gene_size):
     NG50 = 0
     NG50con = 0
     for con in trimmedLength:
-        if len(trimmedLength) < est_genome_size/2:
+        if sum < (est_genome_size/2):
             break
         testSum += con
         NG50con += 1
         if teoNG50 < testSum:
             NG50 = con
             break
-            
+        
     # Checking N90 [bp] [# of Contigs]
     testSum = 0
     N90 = 0
@@ -97,7 +111,7 @@ def assembly_stats(contigsMultifasta, mini, est_genome_size, average_gene_size):
     NG90 = 0
     NG90con = 0
     for con in trimmedLength:
-        if len(trimmedLength) < est_genome_size/2:
+        if sum < est_genome_size/2:
             break
         testSum += con
         NG90con += 1
@@ -115,6 +129,7 @@ def assembly_stats(contigsMultifasta, mini, est_genome_size, average_gene_size):
     print 'total length [bp]: ' + str(total)
     print '# of trimmed contigs: ' + str(len(trimmedLength))
     print 'trimmed length [bp]: ' + str(sum)
+    print 'GC content [%]: ' + str(GC_cont)
     print 'min. contig [bp]: ' + str(min(trimmedLength))
     print 'median contig [bp]: ' + str(median[0])
     print 'mean contig size [bp]: ' + str(meancontig)
@@ -136,6 +151,7 @@ def assembly_stats(contigsMultifasta, mini, est_genome_size, average_gene_size):
     out.write('total length [bp]: ' + str(total) + '\n')
     out.write('# of trimmed contigs: ' + str(len(trimmedLength)) + '\n')
     out.write('trimmed length [bp]: ' + str(sum) + '\n')
+    out.write('GC content [%]: ' + str(GC_cont) + '\n')
     out.write('min. contig [bp]: ' + str(min(trimmedLength)) + '\n')
     out.write('median contig [bp]: ' + str(median[0]) + '\n')
     out.write('mean contig size [bp]: ' + str(meancontig) + '\n')
