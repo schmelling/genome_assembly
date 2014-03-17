@@ -1,6 +1,6 @@
 '''
 
-  Separates the strand specific contigs from each other, so gimme can work with each file separately.
+  Separates the strand specific contigs from each other, so Gimme can work with each file separately.
   
   https://github.com/ged-lab/gimme
 
