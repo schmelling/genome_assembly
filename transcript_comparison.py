@@ -10,6 +10,7 @@
 '''
 
 import sys
+import decimal
 
 def transcript_comparison(file1, file2, file3, file4, output):
     with open(file1, 'r') as Abi:
@@ -26,37 +27,38 @@ def transcript_comparison(file1, file2, file3, file4, output):
             if line.startswith('>'):
                 namesB.append(line.replace('>','').split(' ')[0])
         for line in Amu:
-            namesM.update({line.split()[0]:line.split()[10]})
+            namesM.update({line.split()[0]:decimal.Decimal(line.split()[10]).log10()})
         for line in Ath:
-            namesT.update({line.split()[0]:line.split()[10]})
+            namesT.update({line.split()[0]:decimal.Decimal(line.split()[10]).log10()})
         for line in Vvo:
-            namesV.update({line.split()[0]:line.split()[10]})
-        
+            namesV.update({line.split()[0]:decimal.Decimal(line.split()[10]).log10()})
+
         for name in namesB:
             TRANS.write(name + ',')
             if name in namesM:
-                TRANS.write(namesM[name] + ',')
+                TRANS.write(str(namesM[name]))
+                TRANS.write(',')
             if name not in namesM:
                 TRANS.write('0,')
             if name in namesT:
-                TRANS.write(namesT[name] + ',')
+                TRANS.write(str(namesT[name]))
+                TRANS.write(',')
             if name not in namesT:
                 TRANS.write('0,')
             if name in namesV:
-                TRANS.write(namesV[name] + '\n')
+                TRANS.write(str(namesV[name]))
+                TRANS.write('\n')
             if name not in namesV:
                 TRANS.write('0\n')
-                
+
         Amu.close()
         Ath.close()
         Vvo.close()
 
-    
+
 if __name__ == "__main__":
     file1 = sys.argv[1]
     file2 = sys.argv[2]
     file3 = sys.argv[3]
     file4 = sys.argv[4]
     output = sys.argv[5]
-    
-    transcript_comparison(file1, file2, file3, file4, output)
