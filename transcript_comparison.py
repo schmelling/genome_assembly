@@ -27,29 +27,38 @@ def transcript_comparison(file1, file2, file3, file4, output):
             if line.startswith('>'):
                 namesB.append(line.replace('>','').split(' ')[0])
         for line in Amu:
-            namesM.update({line.split()[0]:decimal.Decimal(line.split()[10]).log10()})
+            if str(decimal.Decimal(line.split()[10]).log10()) == '-Infinity':
+                namesM.update({line.split()[0]:'-250'})
+            else:
+                namesM.update({line.split()[0]:decimal.Decimal(line.split()[10]).log10()})
         for line in Ath:
-            namesT.update({line.split()[0]:decimal.Decimal(line.split()[10]).log10()})
+            if str(decimal.Decimal(line.split()[10]).log10()) == '-Infinity':
+                namesT.update({line.split()[0]:'-250'})
+            else:
+                namesT.update({line.split()[0]:decimal.Decimal(line.split()[10]).log10()})
         for line in Vvo:
-            namesV.update({line.split()[0]:decimal.Decimal(line.split()[10]).log10()})
-
+            if str(decimal.Decimal(line.split()[10]).log10()) == '-Infinity':
+                namesV.update({line.split()[0]:'-250'})
+            else:
+                namesV.update({line.split()[0]:decimal.Decimal(line.split()[10]).log10()})
+        
         for name in namesB:
             TRANS.write(name + ',')
             if name in namesM:
                 TRANS.write(str(namesM[name]))
                 TRANS.write(',')
             if name not in namesM:
-                TRANS.write('0,')
+                TRANS.write('10,')
             if name in namesT:
                 TRANS.write(str(namesT[name]))
                 TRANS.write(',')
             if name not in namesT:
-                TRANS.write('0,')
+                TRANS.write('10,')
             if name in namesV:
                 TRANS.write(str(namesV[name]))
                 TRANS.write('\n')
             if name not in namesV:
-                TRANS.write('0\n')
+                TRANS.write('10\n')
 
         Amu.close()
         Ath.close()
