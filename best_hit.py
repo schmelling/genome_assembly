@@ -1,7 +1,7 @@
 '''
   
   This code take a parsed BLAST file and returns the best hit,
-  if the best hit is 'hypothetical' or 'predicted' the code also returns the best hit with a know function
+  if the best hit is 'hypothetical' or 'predicted' the code also returns the best hit with a known function
   
   Usage: python best_hit.py <input_file> <output_file> <best or best+>
 
