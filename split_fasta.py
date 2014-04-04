@@ -2,7 +2,7 @@
 
     This script provides a way to split a fasta file into to two subfiles
 
-    Usage: python split_fasta.py <input file> <splitting argument>
+    Usage: python split_fasta.py <input file> <spliting argument>
 
     Author: Nicolas Schmelling
 
