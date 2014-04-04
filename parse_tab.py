@@ -1,7 +1,7 @@
 '''
 
-   This script provides a way to parse a BLAST/BLAT (if in tabular format) output.txt files
-   The output file contains the query ID, description, length and the e value
+   This script provides a way to parse a BLAST/BLAT (if in tabular format) output.txt files.
+   The output file contains all the hits with an e value e below a certain threshold.
    
    Usage: python parse.py <blast file> <e value> <output file>
 
