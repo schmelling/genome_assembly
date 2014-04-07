@@ -12,10 +12,12 @@ import sys
 
 def extract(fasta_file, output_file, separator):
     with open(output_file,"w") as f:
+        orthologs = []
         for seq_record in SeqIO.parse(fasta_file, "fasta"):
             if separator in seq_record.description:
-                f.write(str(seq_record.description) + '\n')
-                f.write(str(seq_record.seq) + '\n')
+                orthologs.append(seq_record)
+                
+        SeqIO.write(orthologs, f, "fasta")
                 
 if __name__ == "__main__":
     fasta_file = sys.argv[1]
