@@ -1,18 +1,18 @@
 '''
     Finding matches and no matches between a fasta and a BLAST file
     
-    Usage: python find_match.py <fasta_file> <blast_file> <kind of sequence in blast rna/prot>
+    Usage: python find_match_2.py <fasta_file> <blast_file> <kind of sequence in blast rna/prot>
     
     Author: Nicolas Schmelling
 
 '''
 import sys
+from Bio import SeqIO
 
 def compare(fasta_file, blast_file, kind):
     RNA_hit = {}
     fasta_hit = {}
-    with open(fasta_file, 'r') as infile:
-        blast = open(blast_file)
+    with open(blast_file, 'r') as blast:
         
         match = open('match_'+kind+'.txt','w')
         no_match = open('no_match_'+kind+'.txt','w')
@@ -20,15 +20,14 @@ def compare(fasta_file, blast_file, kind):
         for line in blast:
             RNA_hit.update({line.split()[0]:line.split()[1]})
         
-        for line in infile:
-            if line.startswith('>') and len(line) > 100:
-                fasta_hit.update({line.split(' ',1)[0].replace('>',''):line.split(' ',1)[1].replace('\n','')})
+        for seq_record in SeqIO.parse(fasta_file, "fasta"):
+            fasta_hit.update({seq_record.record:seq_record.description})
                 
         for hit in fasta_hit:
             if hit in RNA_hit:
-                match.write(str(hit) + '\t' + str(fasta_hit.get(hit)) + '\t' + str(RNA_hit.get(hit)) + '\n')
+                match.write(str(fasta_hit.get(hit)) + '\t' + str(RNA_hit.get(hit)) + '\n')
             else:
-                no_match.write(str(hit) + '\t' + str(fasta_hit.get(hit)) + '\n')
+                no_match.write(str(fasta_hit.get(hit)) + '\n')
                 
         match.close()
         no_match.close()
