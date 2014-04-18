@@ -1,4 +1,12 @@
+'''
+  
+  Extract all annotated sequences from a fasta file. 
+  
+  Usage: python extract <fasta_file> <output_file>
+  
+  Author: Nicolas Schmelling
 
+'''
 from Bio import SeqIO
 import sys
 
